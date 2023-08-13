@@ -1,18 +1,18 @@
 import './style/main.scss';
 import './style/wrapper.scss';
 
-const searchInput = document.querySelector("input"); //получаем первый элемент input
-const searchBlockResults = document.querySelector(".search-block"); //тут получаем блок для...
-const saved = document.querySelector(".saved"); //тут получаем блок для...
+const searchInput = document.querySelector("input"); 
+const searchBlockResults = document.querySelector(".search-block"); 
+const saved = document.querySelector(".saved"); 
 
-const debounce = (fn, debounceTime) => { //дебаунс для того чтобы задержка между написанием букв была адеватная
+const debounce = (fn, debounceTime) => {
   let inDebounce;
   return function () {
     clearTimeout(inDebounce);
     inDebounce = setTimeout(() => fn.apply(this, arguments), debounceTime);
   };
 };
-const getSearchResultsDebounce = debounce(getSearchResults, 300); // c помошью дебаунса и поиска по api уже делаем задержку
+const getSearchResultsDebounce = debounce(getSearchResults, 300); 
 searchInput.addEventListener("input", getSearchResultsDebounce);
 
 async function getSearchResults() {
